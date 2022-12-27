@@ -1,5 +1,8 @@
-![Logo](assets/logo_README.png)
 # Memento Mori
+<center><img src="assets/logo_README.png" alt="drawing" width="333"/>
+</center>
+
+### About
 A calendar designed as a tool to help you harness the concept of Memento Mori by visualizing your life week by week.
 
 #

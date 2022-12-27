@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>Memento Mori</title>
+    <meta name="description" content="A calendar designed as a tool to help you harness the concept of Memento Mori by visualizing your life week by week.">
+    <meta name="keywords" content="Memento, Mori, Memento Mori, Calendar, Life, Week, Time, Carpe Diem, Carpe, Diem">
+    <meta name="author" content="Nicolai Kürtös">
+    <link rel="stylesheet" href="style.memento-mori.css">
+</head>
+
+<body>
+    <h1>Memento Mori</h1>
+    <div id="cookieBanner">
+        <p>Wenn du deine Daten nicht bei jedem Besuch erneut eingeben möchtest, kannst du der Nutzung von &#127850;
+            (Cookies)
+            zustimmen.</p>
+        <div id="buttons">
+            <div id="accept" onclick="setOptIn()">Okey, let's go!</div>
+            <div id="noThanks" onclick="closeBanner()">Ablehnen</div>
+        </div>
+    </div>
+    <div id="setup">
+        <label for="date">Your Birthdate</label>
+        <input id="date" type="date" autofocus>
+        <div>
+            <input class="gender" type="radio" name="gender" value="0" checked> Male
+            <input class="gender" type="radio" name="gender" value="1"> Female
+        </div>
+        <div id="submit" onclick="setup()">Let's go!</div>
+    </div>
+    <div id="weeks"></div>
+    <footer>Coded with 🖤 by Nicolai Kürtös</footer>
+    <script src="memento-mori.js"></script>
+</body>
+
+</html>

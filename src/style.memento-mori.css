@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amatic SC', cursive;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    color: black;
+}
+
+h1 {
+    padding: 1rem 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+#cookieBanner {
+    padding: 10vmin;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vmin;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 10vmin;
+    background: white;
+    z-index: 10000;
+}
+
+#cookieBanner p {
+    margin-bottom: 2vmin;
+}
+
+#buttons {
+    font-size: 5vmin;
+    display: flex;
+    column-gap: 5vmin;
+}
+
+#accept {
+    border: 1px solid black;
+    padding: 1.5vmin 2vmin;
+    border-radius: 3vmin;
+    cursor: pointer;
+}
+
+#noThanks {
+    padding: 1.5vmin 2vmin;
+    background: red;
+    color: white;
+    font-weight: 700;
+    border-radius: 3vmin;
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+#setup {
+    opacity: 1;
+    display: grid;
+    place-items: center;
+    width: 30vmin;
+    transition: all 250ms ease-in-out;
+}
+
+#date {
+    border: none;
+    font-size: 3rem;
+}
+
+#submit {
+    border: 1px solid black;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    padding: .25rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#weeks {
+    display: none;
+    flex-direction: column;
+    row-gap: .5vmin;
+    width: 66vmin;
+}
+
+.week_row {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.age {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    right: -3vmin;
+    top: -1.25vmin;
+    width: 3vmin;
+    height: 3vmin;
+    font-size: 3vmin;
+    line-height: 3vmin;
+    font-weight: 400;
+}
+
+.week {
+    width: .5vmin;
+    height: .5vmin;
+    border-radius: 100%;
+    background: lightgray;
+}
+
+.gone {
+    background: black;
+}
+
+footer {
+    padding: 2vmin 0;
+}
+
+/* iPhone Portrait */
+@media screen and (max-device-width: 480px) and (orientation:portrait) {
+    #setup {
+        margin-top: -30vmin;
+        width: 90vmin;
+    }
+
+    #weeks {
+        margin-top: -10vmin;
+    }
+
+    .week {
+        width: 1vmin;
+        height: 1vmin;
+        border-radius: 100%;
+    }
+
+    .age {
+        top: -1vmin;
+    }
+}

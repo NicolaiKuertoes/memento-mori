@@ -10,7 +10,7 @@ A calendar designed as a tool to help you harness the concept of Memento Mori by
 ### How to use
 Just select your date of birth and gender.
 #
-### What you will see
+### How it works
 Based on your selected gender, the corresponding average life expectancy will be set.
 A week is represented by a dot. A row represents a year (52 weeks).
 The app calculates the weeks you already lived and shows them as a black dot.

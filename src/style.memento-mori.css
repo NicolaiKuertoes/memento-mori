@@ -33,37 +33,39 @@ h1 {
 }
 
 #cookieBanner {
-    padding: 10vmin;
+    opacity: 1;
+    padding: 2.5vmin 5vmin;
     position: fixed;
+    width: 66vmin;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2vmin;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    text-align: center;
-    font-size: 10vmin;
+    bottom: -20vmin;
+    right: 5vmin;
+    text-align: left;
+    font-size: 2.5vmin;
     background: white;
+    border-radius: 5vmin;
+    box-shadow: 0vmin 5vmin 5vmin 5vmin rgba(0, 0, 0, .125);
     z-index: 10000;
 }
 
 #cookieBanner p {
-    margin-bottom: 2vmin;
+    margin-bottom: 1vmin;
 }
 
 #buttons {
-    font-size: 5vmin;
+    font-size: 2.5vmin;
     display: flex;
-    column-gap: 5vmin;
+    column-gap: 2.5vmin;
 }
 
 #accept {
     border: 1px solid black;
     padding: 1.5vmin 2vmin;
-    border-radius: 3vmin;
+    border-radius: 2vmin;
     cursor: pointer;
 }
 
@@ -72,7 +74,7 @@ h1 {
     background: red;
     color: white;
     font-weight: 700;
-    border-radius: 3vmin;
+    border-radius: 2vmin;
     border: 1px solid red;
     cursor: pointer;
 }
@@ -145,6 +147,50 @@ footer {
 
 /* iPhone Portrait */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
+    #cookieBanner {
+        opacity: 1;
+        padding: 10vmin;
+        position: fixed;
+        width: 90vmin;
+        height: 50vmin;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2vmin;
+        bottom: -20vmin;
+        left: calc(50% - 90vmin / 2);
+        text-align: center;
+        font-size: 5vmin;
+        background: white;
+        border-radius: 5vmin;
+        box-shadow: 0vmin 5vmin 5vmin 5vmin rgba(0, 0, 0, .125);
+        z-index: 10000;
+    }
+
+    #buttons {
+        font-size: 5vmin;
+        display: flex;
+        column-gap: 5vmin;
+    }
+
+    #accept {
+        border: 1px solid black;
+        padding: 1.5vmin 2vmin;
+        border-radius: 3vmin;
+        cursor: pointer;
+    }
+
+    #noThanks {
+        padding: 1.5vmin 2vmin;
+        background: red;
+        color: white;
+        font-weight: 700;
+        border-radius: 3vmin;
+        border: 1px solid red;
+        cursor: pointer;
+    }
+
     #setup {
         margin-top: -30vmin;
         width: 90vmin;

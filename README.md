@@ -1,6 +1,6 @@
 # Memento Mori
 <p align="center">
-<img src="assets/logo_README.png" alt="drawing" width="333"/>
+<img src="assets/logo_README.png" alt="drawing" width="100"/>
 </p>
 
 ### About

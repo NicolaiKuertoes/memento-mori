@@ -1,6 +1,17 @@
 document.getElementById("date").value = new Date();
 
 const cookieBanner = document.getElementById("cookieBanner");
+
+const fadeIn = [
+    { opacity: 0 },
+    { bottom: '5vmin' }
+];
+
+cookieBanner.animate(fadeIn, {
+    duration: 666,
+    fill: "forwards"
+});
+
 const setupForm = document.getElementById("setup");
 const weeks = document.getElementById("weeks");
 

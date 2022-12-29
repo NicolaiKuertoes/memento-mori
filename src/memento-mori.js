@@ -100,6 +100,9 @@ function mementoMori(birthdate, sex) {
     const today = new Date();
     const weekNumber = today.getWeekNumber();
     let weeksLived = getWeeksDiff(birthdate, today) - 5;
+    if (today.getDay() < 6) {
+        --weeksLived;
+    }
     let counter = 0;
     for (let k = 1; k <= yearsToLive; k++) { // create rows for each year
         const week_row = document.createElement("div");

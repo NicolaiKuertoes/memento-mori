@@ -69,7 +69,7 @@ if (document.cookie) { // Checks if cookie is set
 function setup() {
     cookieBanner.style.display = "none";
     sex = document.querySelector('input[name="gender"]:checked').value;
-    exp = sex == "m" ? 79 : 83;
+    exp = sex == "m" ? 80 : 85;
     bday = new Date(document.getElementById("date").value);
     if (optIn) {
         const cookie = btoa(bday + "-" + sex);

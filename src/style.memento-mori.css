@@ -116,6 +116,13 @@ h1 {
     justify-content: space-evenly;
 }
 
+.week {
+    width: .66vmin;
+    height: .66vmin;
+    border-radius: 33%;
+    background: lightgray;
+}
+
 .age {
     display: flex;
     align-items: flex-start;
@@ -128,13 +135,6 @@ h1 {
     font-size: 3vmin;
     line-height: 3vmin;
     font-weight: 400;
-}
-
-.week {
-    width: .5vmin;
-    height: .5vmin;
-    border-radius: 100%;
-    background: lightgray;
 }
 
 .gone {

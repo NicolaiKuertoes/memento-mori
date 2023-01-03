@@ -1,50 +1,12 @@
-document.getElementById("date").value = new Date();
-
-const cookieBanner = document.getElementById("cookieBanner");
-
-const fadeIn = [
-    { opacity: 0 },
-    { bottom: '5vmin' }
-];
-
-cookieBanner.animate(fadeIn, {
-    duration: 666,
-    fill: "forwards"
-});
-
-const setupForm = document.getElementById("setup");
-const weeks = document.getElementById("weeks");
-
-let birthdate;
+let bday;
+let exp;
 let sex;
 let optIn = 0;
 
-Date.prototype.getWeekNumber = function () {
-    var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
-    var dayNum = d.getUTCDay() || 7;
-    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-    var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
-};
-
-function addYears(date, years) {
-    date.setFullYear(date.getFullYear() + years);
-    return date;
-}
-
-function getWeeksDiff(startDate, endDate) {
-    const msInWeek = 1000 * 60 * 60 * 24 * 7;
-    return Math.round(Math.abs(endDate - startDate) / msInWeek);
-}
-
-function setOptIn() {
-    optIn = 1;
-    cookieBanner.style.display = "none";
-}
-
-function closeBanner() {
-    cookieBanner.style.display = "none";
-}
+/**
+ * Cookies
+ */
+const cookieBanner = document.getElementById("cookieBanner");
 
 function setCookie(name, value, days) {
     var expires = "";
@@ -67,60 +29,125 @@ function getCookie(name) {
     return null;
 }
 
-if (document.cookie) {
+function setOptIn() {
+    optIn = 1;
     cookieBanner.style.display = "none";
-    let values = atob(getCookie("biscuit")).split("-");
-    birthdate = new Date(values[0]);
-    sex = values[1];
-    setupForm.style.display = "none";
-    mementoMori(birthdate, sex);
+}
+
+function fadeInBanner(duration) {
+    const fadeIn = [
+        { opacity: 0 },
+        { bottom: '5vmin' }
+    ];
+    cookieBanner.animate(fadeIn, {
+        duration: duration,
+        fill: "forwards"
+    });
+}
+
+fadeInBanner(666);
+
+function closeBanner() {
+    cookieBanner.style.display = "none";
 }
 
 /**
  * Setup
- */
+*/
+const setupForm = document.getElementById("setup");
+
+if (document.cookie) { // Checks if cookie is set
+    cookieBanner.style.display = "none";
+    let values = atob(getCookie("biscuit")).split("-");
+    bday = new Date(values[0]);
+    sex = values[1];
+    exp = sex == "m" ? 79 : 83;
+    setupForm.style.display = "none";
+    drawCalendar(bday);
+}
+
 function setup() {
     cookieBanner.style.display = "none";
     sex = document.querySelector('input[name="gender"]:checked').value;
-    birthdate = new Date(document.getElementById("date").value);
+    exp = sex == "m" ? 79 : 83;
+    bday = new Date(document.getElementById("date").value);
     if (optIn) {
-        const cookie = btoa(birthdate + "-" + sex);
+        const cookie = btoa(bday + "-" + sex);
         setCookie("biscuit", cookie, 30);
     }
     setupForm.style.display = "none";
-    mementoMori(birthdate, sex);
+    drawCalendar(bday);
+}
+
+function isGapYear(j) {
+    return j < 1583 ?
+        (j % 4) == 0
+        : (((j % 4) == 0
+            & (j % 100) != 0)
+            || ((j % 4) == 0
+                & ((j % 100) != 0
+                    || (j % 400) == 0)));
+}
+
+function getLivedWeeks(bday) {
+    const now = new Date();
+    const day_diff = (now - bday) / (1000 * 3600 * 24);
+    const years = Math.floor(day_diff / 365);
+    const remaining_weeks = Math.floor((day_diff % 365) / 7);
+
+    // count gapyears
+    let numOfGaps = 0;
+    for (let year = bday.getFullYear(); year < now.getFullYear(); year++) {
+        if (isGapYear(year)) {
+            ++numOfGaps;
+        }
+    }
+
+    // convert number of gapyears to weeks
+    let gapWeeks = Math.round(numOfGaps / 7);
+
+    // weeks lived
+    return years * 52 + remaining_weeks - gapWeeks;
 }
 
 /**
- * Memento Mori
-*/
-function mementoMori(birthdate, sex) {
+ * Draw Memento Mori Calendar
+ */
+function drawCalendar(bday) {
+    const weeks = document.getElementById("weeks");
     weeks.style.display = "flex";
-    const yearsToLive = sex == "0" ? 79 : 83;
-    const today = new Date();
-    const weekNumber = today.getWeekNumber();
-    let weeksLived = getWeeksDiff(birthdate, today) - 5;
-    let counter = 0;
-    for (let k = 1; k <= yearsToLive; k++) { // create rows for each year
+
+    let livedWeeks = getLivedWeeks(bday);
+    // draw rows of weeks
+    for (let year = 1; year <= exp; year++) {
         const week_row = document.createElement("div");
         week_row.classList.add("week_row");
-        if (k % 5 == 0) {
+
+        // label every 5 years
+        if (year % 5 == 0) {
             const age = document.createElement("span");
             age.classList.add("age");
-            age.innerHTML = k;
+            age.innerHTML = year;
             week_row.appendChild(age);
         }
-        if (k % 10 == 0) {
+
+        // add gap every decade
+        if (year % 10 == 0) {
             week_row.style.marginBottom = "1vmin";
         }
+
         weeks.appendChild(week_row);
-        for (let i = 0; i < 52; i++) { // create weeks for each row
+
+        // draw weeks
+        for (let i = 0; i < 52; i++) {
             const week = document.createElement("span");
             week.classList.add("week");
-            if (counter < weeksLived) {
+
+            // fill lived weeks
+            if (livedWeeks-- > 0) {
                 week.classList.add("gone");
-                ++counter;
             }
+
             week_row.appendChild(week);
         }
     }
